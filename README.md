@@ -1,1 +1,3 @@
-Landing page do subadenivel.dev com redirecionamento para whatsapp
+Landing page do subadenivel.dev com redirecionamento para whatsapp.
+
+Gh pages.
