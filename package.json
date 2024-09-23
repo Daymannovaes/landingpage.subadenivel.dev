@@ -1,0 +1,15 @@
+{
+  "name": "landingpage.subadenivel.dev",
+  "version": "1.0.0",
+  "description": "Landing page do subadenivel.dev com redirecionamento para whatsapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "showdown": "^2.1.0"
+  }
+}
