@@ -4,6 +4,7 @@
   "description": "Landing page do subadenivel.dev com redirecionamento para whatsapp",
   "main": "index.js",
   "scripts": {
+    "build": "sh build-handbook.sh handbook-src handbook/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
