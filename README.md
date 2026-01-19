@@ -1,3 +1,3 @@
 Landing page do subadenivel.dev com redirecionamento para whatsapp.
 
-Gh pages.
+Deployed on Vercel.
