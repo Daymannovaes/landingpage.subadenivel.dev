@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auto-Avaliação de Desenvolvedor | Subadenivel.dev</title>
+    <meta name="description" content="Descubra seu nível como desenvolvedor e receba dicas personalizadas de melhoria." />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '942049667673190');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=942049667673190&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+  </head>
+  <body>
+    <!-- Interactive background -->
+    <canvas id="particles"></canvas>
+
+    <main class="container">
+      <!-- Header -->
+      <header class="header">
+        <a href="../" class="logo">subadenivel.dev</a>
+        <a href="../" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Voltar
+        </a>
+      </header>
+
+      <!-- Introduction -->
+      <section class="intro-section">
+        <h1>Auto-Avaliação de Desenvolvedor</h1>
+        <p>Avalie suas habilidades técnicas e comportamentais. Responda cada afirmação de acordo com seu nível de concordância e descubra seu perfil como desenvolvedor.</p>
+      </section>
+
+      <!-- Assessment form (rendered by app.js) -->
+      <div id="assessment-form"></div>
+
+      <!-- Basic results (hidden until submission) -->
+      <div id="results-basic" style="display: none;"></div>
+
+      <!-- Email form (modal, hidden until "Ver mais") -->
+      <div id="email-form"></div>
+
+      <!-- Full results (hidden until email submission) -->
+      <div id="results-full" style="display: none;"></div>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

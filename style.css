@@ -127,6 +127,29 @@ body:hover #particles {
   height: 24px;
 }
 
+.secondary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.secondary-link:hover {
+  color: #25D366;
+}
+
+.secondary-link svg {
+  transition: transform 0.3s ease;
+}
+
+.secondary-link:hover svg {
+  transform: translateX(4px);
+}
+
 @media (max-width: 480px) {
   .value-item {
     padding: 14px 16px;
