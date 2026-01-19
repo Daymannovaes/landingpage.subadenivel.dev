@@ -92,25 +92,24 @@ src="https://www.facebook.com/tr?id=942049667673190&ev=PageView&noscript=1"
         }
 
         draw() {
-          // Outer glow (star shine effect)
+          // Subtle outer glow
           let gradient = ctx.createRadialGradient(
             this.x, this.y, 0,
-            this.x, this.y, this.size * 8
+            this.x, this.y, this.size * 3
           );
-          gradient.addColorStop(0, `rgba(37, 211, 102, ${this.alpha * 0.8})`);
-          gradient.addColorStop(0.1, `rgba(37, 211, 102, ${this.alpha * 0.4})`);
-          gradient.addColorStop(0.4, `rgba(37, 211, 102, ${this.alpha * 0.1})`);
+          gradient.addColorStop(0, `rgba(37, 211, 102, ${this.alpha * 0.5})`);
+          gradient.addColorStop(0.3, `rgba(37, 211, 102, ${this.alpha * 0.15})`);
           gradient.addColorStop(1, 'rgba(37, 211, 102, 0)');
 
           ctx.fillStyle = gradient;
           ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size * 8, 0, Math.PI * 2);
+          ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
           ctx.fill();
 
-          // Bright core
-          ctx.fillStyle = `rgba(200, 255, 220, ${this.alpha})`;
+          // Core
+          ctx.fillStyle = `rgba(37, 211, 102, ${this.alpha})`;
           ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
           ctx.fill();
         }
 
