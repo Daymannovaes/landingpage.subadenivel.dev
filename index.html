@@ -100,28 +100,32 @@ src="https://www.facebook.com/tr?id=942049667673190&ev=PageView&noscript=1"
         draw() {
           const { r, g, b } = this.color;
 
-          // Golden star shimmer
+          // Calculate glow intensity (shimmer only affects glow, not core)
+          let glowMultiplier = 1;
           if (this.isGolden) {
-            this.shimmerAngle += 0.03;
-            this.alpha = this.baseAlpha + Math.sin(this.shimmerAngle) * 0.25;
+            this.shimmerAngle += 0.025;
+            glowMultiplier = 1 + Math.sin(this.shimmerAngle) * 0.6;
           }
 
-          // Subtle outer glow
+          // Outer glow (affected by shimmer for golden star)
+          let glowRadius = this.isGolden ? this.size * 4 * glowMultiplier : this.size * 3;
+          let glowAlpha = this.isGolden ? this.baseAlpha * 0.4 * glowMultiplier : this.baseAlpha * 0.5;
+
           let gradient = ctx.createRadialGradient(
-            this.x, this.y, 0,
-            this.x, this.y, this.size * 3
+            this.x, this.y, this.size * 0.5,
+            this.x, this.y, glowRadius
           );
-          gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${this.alpha * 0.5})`);
-          gradient.addColorStop(0.3, `rgba(${r}, ${g}, ${b}, ${this.alpha * 0.15})`);
+          gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${glowAlpha})`);
+          gradient.addColorStop(0.4, `rgba(${r}, ${g}, ${b}, ${glowAlpha * 0.3})`);
           gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
 
           ctx.fillStyle = gradient;
           ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+          ctx.arc(this.x, this.y, glowRadius, 0, Math.PI * 2);
           ctx.fill();
 
-          // Core
-          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${this.alpha})`;
+          // Stable core (never changes)
+          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${this.baseAlpha})`;
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
           ctx.fill();
