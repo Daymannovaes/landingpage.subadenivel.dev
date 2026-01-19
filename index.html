@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Subadenivel.dev</title>
+    <title>Subadenivel.dev | Mentoria para Desenvolvedores</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
 
     <!-- Meta Pixel Code -->
@@ -25,18 +25,153 @@ src="https://www.facebook.com/tr?id=942049667673190&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
   </head>
   <body>
-    <img src="uatzap.png" alt="foto do whatsapp" class="whatsapp-icon" />
-    <h1 class="title">SUBADENIVEL.DEV</h1>
-    <h2 class="subtitle">
-      A excelência profissional na carreira de desenvolvedor de software
-    </h2>
+    <!-- Interactive background -->
+    <canvas id="particles"></canvas>
+
+    <main class="container">
+      <h1 class="headline">Acelere sua carreira como desenvolvedor</h1>
+      <p class="subheadline">Mentoria individual para desenvolvedores que querem ir além do código</p>
+
+      <div class="value-points">
+        <div class="value-item">
+          <span class="value-icon">01</span>
+          <span>Mentoria 1:1 personalizada</span>
+        </div>
+        <div class="value-item">
+          <span class="value-icon">02</span>
+          <span>Soft skills: comunicação, liderança, entrevistas</span>
+        </div>
+        <div class="value-item">
+          <span class="value-icon">03</span>
+          <span>Estratégias práticas de crescimento profissional</span>
+        </div>
+      </div>
+
+      <a href="https://wa.link/tis8y8" class="cta-button">
+        <img src="uatzap.png" alt="WhatsApp" class="cta-icon" />
+        Fale comigo no WhatsApp
+      </a>
+    </main>
+
+    <script>
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let mouse = { x: null, y: null, radius: 150 };
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+      });
+
+      window.addEventListener('mouseout', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.baseX = this.x;
+          this.baseY = this.y;
+          this.size = Math.random() * 2 + 1;
+          this.density = Math.random() * 30 + 1;
+          this.alpha = Math.random() * 0.5 + 0.1;
+        }
+
+        draw() {
+          ctx.fillStyle = `rgba(37, 211, 102, ${this.alpha})`;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.closePath();
+          ctx.fill();
+        }
+
+        update() {
+          if (mouse.x && mouse.y) {
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            let forceDirectionX = dx / distance;
+            let forceDirectionY = dy / distance;
+            let maxDistance = mouse.radius;
+            let force = (maxDistance - distance) / maxDistance;
+            let directionX = forceDirectionX * force * this.density;
+            let directionY = forceDirectionY * force * this.density;
+
+            if (distance < mouse.radius) {
+              this.x -= directionX;
+              this.y -= directionY;
+            } else {
+              if (this.x !== this.baseX) {
+                let dx = this.x - this.baseX;
+                this.x -= dx / 10;
+              }
+              if (this.y !== this.baseY) {
+                let dy = this.y - this.baseY;
+                this.y -= dy / 10;
+              }
+            }
+          } else {
+            if (this.x !== this.baseX) {
+              let dx = this.x - this.baseX;
+              this.x -= dx / 20;
+            }
+            if (this.y !== this.baseY) {
+              let dy = this.y - this.baseY;
+              this.y -= dy / 20;
+            }
+          }
+        }
+      }
+
+      function init() {
+        particles = [];
+        let numberOfParticles = (canvas.width * canvas.height) / 9000;
+        for (let i = 0; i < numberOfParticles; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.draw();
+          p.update();
+        });
+        connectParticles();
+        requestAnimationFrame(animate);
+      }
+
+      function connectParticles() {
+        for (let a = 0; a < particles.length; a++) {
+          for (let b = a; b < particles.length; b++) {
+            let dx = particles[a].x - particles[b].x;
+            let dy = particles[a].y - particles[b].y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 100) {
+              ctx.strokeStyle = `rgba(37, 211, 102, ${0.1 - distance / 1000})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(particles[b].x, particles[b].y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      init();
+      animate();
+      window.addEventListener('resize', init);
+    </script>
   </body>
 </html>
-
-<script>
-  document
-    .querySelector(".whatsapp-icon")
-    .addEventListener("click", function () {
-      location.href = "https://wa.link/tis8y8";
-    });
-</script>
